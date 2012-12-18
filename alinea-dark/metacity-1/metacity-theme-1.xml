@@ -1,0 +1,656 @@
+<?xml version="1.0"?>
+<metacity_theme>
+<info>
+	<name>Alinea-Dark</name>
+	<author>Cedric Leporcq</author>
+	<copyright>&#194;Cedric Leporcq, 2012</copyright>
+	<date>June 23, 2012</date>
+	<description>Simple metacity theme with drawn outlines colored around edges (Dark version).</description>
+</info>
+
+<!-- ::: CONSTANTS ::: -->
+
+<!-- button minimum size -->
+<constant name="Bmin" value="8"/>
+<!-- button inside padding -->
+<constant name="Bpad" value="8"/>
+<!--options for buttons centering : horizontal (Ch, default=1), offset (0, default=5) -->
+<constant name="Ch" value="1"/>
+<constant name="Oh" value="5"/>
+<constant name="Ov" value="4"/>
+
+<!--Left and right titlebar edge (keep in sync with geometry setting)-->
+<constant name="Rte" value="2"/>
+<constant name="Lte" value="2"/>
+
+<constant name="Top_border" value="2"/>
+
+<!-- ::: GEOMETRY ::: -->
+
+<frame_geometry name="normal" rounded_top_left="true" rounded_top_right="true" rounded_bottom_left="false" rounded_bottom_right="false">
+	<distance name="left_width" value="2"/>
+	<distance name="right_width" value="2"/>	
+	<distance name="bottom_height" value="2"/>
+	<distance name="left_titlebar_edge" value="2"/>
+	<distance name="right_titlebar_edge" value="2"/>
+	<aspect_ratio name="button" value=".8"/>
+	<distance name="title_vertical_pad" value="0"/>
+	<border name="title_border" left="5" right="5" top="3" bottom="1"/>
+	<border name="button_border" left="0" right="0" top="2" bottom="0"/>
+</frame_geometry>
+
+<frame_geometry name="shaded" parent="normal" rounded_top_left="true" rounded_top_right="true" rounded_bottom_left="false" rounded_bottom_right="false"/>
+
+<frame_geometry name="normal_max" parent="normal" rounded_top_left="false" rounded_top_right="false" rounded_bottom_left="false" rounded_bottom_right="false">
+	<!-- strip frame spacing off the normal geometry when maximised -->
+	<distance name="left_width" value="0"/>
+	<distance name="right_width" value="0"/>
+	<distance name="bottom_height" value="1"/>
+	<distance name="left_titlebar_edge" value="0"/>
+	<distance name="right_titlebar_edge" value="0"/>
+	<border name="title_border" left="5" right="5" top="2" bottom="1"/>
+	<border name="button_border" left="0" right="0" top="0" bottom="1"/>
+</frame_geometry>
+
+<frame_geometry name="utility" title_scale="small" rounded_top_left="false" rounded_top_right="false" rounded_bottom_left="false" rounded_bottom_right="false">
+	<distance name="left_width" value="1"/>
+	<distance name="right_width" value="1"/>
+	<distance name="bottom_height" value="1"/>
+	<distance name="left_titlebar_edge" value="1"/>
+	<distance name="right_titlebar_edge" value="1"/>
+	<distance name="title_vertical_pad" value="0"/>
+	<border name="title_border" left="2" right="2" top="3" bottom="1"/>
+	<border name="button_border" left="0" right="0" top="1" bottom="0"/>
+	<aspect_ratio name="button" value="1"/>
+</frame_geometry>
+
+<frame_geometry name="border" has_title="false">
+	<distance name="left_width" value="1"/>
+	<distance name="right_width" value="1"/>
+	<distance name="bottom_height" value="1"/>
+	<distance name="left_titlebar_edge" value="1"/>
+	<distance name="right_titlebar_edge" value="1"/>
+	<distance name="button_width" value="0"/>
+	<distance name="button_height" value="0"/>
+	<distance name="title_vertical_pad" value="4"/>
+	<border name="title_border" left="0" right="0" top="0" bottom="0"/>
+	<border name="button_border" left="0" right="0" top="0" bottom="0"/>
+</frame_geometry>
+
+<!-- ::: BORDER OUTLINE ::: -->
+
+<!-- rectangle border -->
+
+<draw_ops name="rectangle_border_n">
+	<!-- rectangle border -->
+	<rectangle color="shade/#3C3C3C/.7" filled="false" x="0" y="0" width="width - 1" height="height - 1"/>
+</draw_ops>
+
+<draw_ops name="rectangle_border_f">
+	<!-- rectangle border -->
+	<rectangle color="shade/gtk:bg[SELECTED]/.70" filled="false" x="0" y="0" width="width - 1" height="height - 1"/>
+</draw_ops>
+
+<draw_ops name="corner_n">
+	<!-- Corner top left -->
+	<line color="shade/#3C3C3C/.7" x1="1" y1="3" x2="1" y2="4"/>
+	<line color="shade/#3C3C3C/.7" x1="2" y1="2" x2="2" y2="2"/>
+	<line color="shade/#3C3C3C/.7" x1="3" y1="1" x2="4" y2="1"/>
+
+	<!-- Corner top right -->
+	<line color="shade/#3C3C3C/.7" x1="width-2" y1="3" x2="width-2" y2="4"/>
+	<line color="shade/#3C3C3C/.7" x1="width-3" y1="2" x2="width-3" y2="2"/>
+	<line color="shade/#3C3C3C/.7" x1="width-5" y1="1" x2="width-4" y2="1"/>
+</draw_ops>
+
+<draw_ops name="corner_f">
+	<!-- Corner top left -->
+	<line color="shade/gtk:bg[SELECTED]/.70" x1="1" y1="3" x2="1" y2="4"/>
+	<line color="shade/gtk:bg[SELECTED]/.70" x1="2" y1="2" x2="2" y2="2"/>
+	<line color="shade/gtk:bg[SELECTED]/.70" x1="3" y1="1" x2="4" y2="1"/>
+
+	<!-- Corner top right -->
+	<line color="shade/gtk:bg[SELECTED]/.70" x1="width-2" y1="3" x2="width-2" y2="4"/>
+	<line color="shade/gtk:bg[SELECTED]/.70" x1="width-3" y1="2" x2="width-3" y2="2"/>
+	<line color="shade/gtk:bg[SELECTED]/.70" x1="width-5" y1="1" x2="width-4" y2="1"/>
+</draw_ops>
+
+<draw_ops name="edge_n">
+<!-- rounded top left border -->
+	<line color="shade/#3C3C3C/.9" x1="(Lte) + 1" y1="Top_border" x2="(Lte) + 3" y2="Top_border"/>
+	<line color="shade/#3C3C3C/.9" x1="(Lte) + 1" y1="Top_border + 1" x2="(Lte) + 1" y2="Top_border + 1"/>
+	<line color="shade/#3C3C3C/.9" x1="(Lte)" y1="Top_border" x2="(Lte)" y2="Top_border + 3"/>
+
+<!-- rounded top right border -->
+	<line color="shade/#3C3C3C/.9" x1="width - (Rte) - 4" y1="Top_border" x2="width - (Rte) - 1" y2="Top_border"/>
+	<line color="shade/#3C3C3C/.9" x1="width - (Rte) - 2" y1="Top_border + 1" x2="width - (Rte) - 2" y2="Top_border + 1"/>
+	<line color="shade/#3C3C3C/.9" x1="width - (Rte) - 1" y1="Top_border" x2="width - (Rte) - 1" y2="Top_border + 3"/>
+
+	<rectangle color="shade/#3C3C3C/.9" filled="true" x="0" y="0" width="left_width" height="height"/>
+	<rectangle color="shade/#3C3C3C/.9" filled="true" x="width - right_width" y="0" width="right_width" height="height"/>
+	<rectangle color="shade/#3C3C3C/.9" filled="true" x="0" y="height - bottom_height" width="width" height="bottom_height"/>
+	
+	<include name="corner_n"/>
+	<include name="rectangle_border_n"/>
+</draw_ops>
+
+<draw_ops name="edge_f">
+<!-- rounded top left border -->
+	<line color="shade/gtk:bg[SELECTED]/.87" x1="(Lte) + 1" y1="Top_border" x2="(Lte) + 3" y2="Top_border"/>
+	<line color="shade/gtk:bg[SELECTED]/.87" x1="(Lte) + 1" y1="Top_border + 1" x2="(Lte) + 1" y2="Top_border + 1"/>
+	<line color="shade/gtk:bg[SELECTED]/.87" x1="(Lte)" y1="Top_border" x2="(Lte)" y2="Top_border + 3"/>
+
+<!-- rounded top right border -->
+	<line color="shade/gtk:bg[SELECTED]/.87" x1="width - (Rte) - 4" y1="Top_border" x2="width - (Rte) - 1" y2="Top_border"/>
+	<line color="shade/gtk:bg[SELECTED]/.87" x1="width - (Rte) - 2" y1="Top_border + 1" x2="width - (Rte) - 2" y2="Top_border + 1"/>
+	<line color="shade/gtk:bg[SELECTED]/.87" x1="width - (Rte) - 1" y1="Top_border" x2="width - (Rte) - 1" y2="Top_border + 3"/>
+
+	<rectangle color="shade/gtk:bg[SELECTED]/.87" filled="true" x="0" y="0" width="left_width" height="height"/>
+	<rectangle color="shade/gtk:bg[SELECTED]/.87" filled="true" x="width - right_width" y="0" width="right_width" height="height"/>
+	<rectangle color="shade/gtk:bg[SELECTED]/.87" filled="true" x="0" y="height-bottom_height" width="width" height="bottom_height"/>
+
+	<include name="corner_f"/>
+	<include name="rectangle_border_f"/>
+</draw_ops>
+
+<!-- ::: TITLEBAR ::: -->
+
+<draw_ops name="titlebar_bg_n">
+	<rectangle color="shade/#3C3C3C/.9" filled="true" x="0" y="0" width="width" height="Top_border"/>
+	<rectangle color="#3C3C3C" filled="true" x="0" y="Top_border" width="width" height="top_height - Top_border"/>
+
+<!--top shade-->
+	<tint color="shade/#3C3C3C/.7" alpha=".1" x="0" y="Top_border" width="width" height="1"/>
+	<tint color="shade/#3C3C3C/.7" alpha=".05" x="0" y="Top_border + 1" width="width" height="1"/>
+</draw_ops>
+
+<draw_ops name="titlebar_bg_f">
+	<rectangle color="shade/gtk:bg[SELECTED]/.87" filled="true" x="0" y="0" width="width" height="Top_border"/>
+	<rectangle color="#3C3C3C" filled="true" x="0" y="Top_border" width="width" height="top_height - Top_border"/>
+<!--top shade-->
+	<tint color="gtk:dark[SELECTED]" alpha=".1" x="0" y="Top_border" width="width" height="1"/>
+	<tint color="gtk:dark[SELECTED]" alpha=".05" x="0" y="Top_border + 1" width="width" height="1"/>
+</draw_ops>
+
+<draw_ops name="titlebar_bg_max_n">
+	<rectangle color="shade/#3C3C3C/.9" filled="true" x="0" y="0" width="width" height="1"/>
+	<rectangle color="#3C3C3C" filled="true" x="0" y="1" width="width" height="top_height - 1"/>
+<!--top shade-->
+	<tint color="shade/#3C3C3C/.7" alpha=".1" x="0" y="1" width="width" height="1"/>
+	<tint color="shade/#3C3C3C/.7" alpha=".05" x="0" y="2" width="width" height="1"/>
+</draw_ops>
+
+<draw_ops name="titlebar_bg_max_f">
+	<rectangle color="shade/gtk:bg[SELECTED]/.87" filled="true" x="0" y="0" width="width" height="1"/>
+	<rectangle color="#3C3C3C" filled="true" x="0" y="1" width="width" height="top_height - 1"/>
+<!--top shade-->
+	<tint color="gtk:dark[SELECTED]" alpha=".1" x="0" y="1" width="width" height="1"/>
+	<tint color="gtk:dark[SELECTED]" alpha=".05" x="0" y="2" width="width" height="1"/>
+</draw_ops>
+
+<!-- ::: TITLE ::: -->
+
+<draw_ops name="title_n">
+	<title color="blend/#EEEEEE/#3C3C3C/.5" x="(3 `max` (width-title_width)) / 2" y="(((height - title_height) / 2) `max` 0)"/>
+</draw_ops>
+
+<draw_ops name="title_f">
+	<title color="blend/#EEEEEE/#3C3C3C/.26" x="(3 `max` (width-title_width)) / 2" y="(((height - title_height) / 2) `max` 0)"/>
+</draw_ops>
+
+<!-- :::BEVEL::: -->
+
+<draw_ops name="bevel_n">
+	<include name="titlebar_bg_n"/>
+</draw_ops>
+
+<draw_ops name="bevel_f">
+	<include name="titlebar_bg_f"/>
+</draw_ops>
+
+<draw_ops name="bevel_max_n">
+	<include name="titlebar_bg_max_n"/>
+</draw_ops>
+
+<draw_ops name="bevel_max_f">
+	<include name="titlebar_bg_max_f"/>
+</draw_ops>
+
+<draw_ops name="bevel_utility_n">
+	<include name="titlebar_bg_n"/>
+	<include name="rectangle_border_n"/>
+</draw_ops>
+
+<draw_ops name="bevel_utility_f">
+<!--	<include name="titlebar_bg_f"/>-->
+	<include name="rectangle_border_f"/>
+</draw_ops>
+
+
+<!-- ::: ICONS ::: -->
+
+<!--
+	using a minimum icon size until there is a proper way to specify relative sizes
+	unfortunately it's logically impossible to always center the icons on non-square
+	buttons without distortion.
+
+	icon_size = (Bmin`max`(height-Bpad*2))
+	hpadding = (width - icon_size) / 2 = ((width-(Bmin`max`(height-Bpad*2)))/2)
+	vpadding = (height - icon_size) / 2 = ((height-(Bmin`max`(height-Bpad*2)))/2)
+-->
+
+<!-- **menu icon** -->
+
+<draw_ops name="menu_icon_n">
+	<icon alpha=".7" x="(width+1-(Ch-1)-(((Bmin+2)`max`(height-Bpad+5))*mini_icon_width/mini_icon_height))/2" y="(height-((Bmin+2)`max`(height-Bpad+5)))/2+1+(Ov-5)" width="(((Bmin+2)`max`(height-Bpad+5))*mini_icon_width/mini_icon_height)" height="((Bmin+2)`max`(height-Bpad+5))"/>
+</draw_ops>
+
+<draw_ops name="menu_icon_f">
+	<icon alpha="1" x="((width+1-(Ch-1))-(((Bmin+2)`max`(height-Bpad+5))*mini_icon_width/mini_icon_height))/2" y="(height-((Bmin+2)`max`(height-Bpad+5)))/2+1+(Ov-5)" width="(((Bmin+2)`max`(height-Bpad+5))*mini_icon_width/mini_icon_height)" height="((Bmin+2)`max`(height-Bpad+5))"/>
+</draw_ops>
+
+<draw_ops name="menu_icon_p">
+	<icon alpha="1" x="(width+1-(Ch-1)-(((Bmin+2)`max`(height-Bpad+5))*mini_icon_width/mini_icon_height))/2" y="(height-((Bmin+2)`max`(height-Bpad+5)))/2+1+(Ov-5)" width="(((Bmin+2)`max`(height-Bpad+5))*mini_icon_width/mini_icon_height)" height="((Bmin+2)`max`(height-Bpad+5))"/>
+</draw_ops>
+
+<!-- **close icon** -->
+
+<draw_ops name="close_icon_n">
+	<!-- outside border -->
+
+	<!-- main cross -->
+	<line color="blend/#3C3C3C/#EEEEEE/.3" width="4"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#EEEEEE/.3" width="4"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<!-- top-left -->
+	<tint color="blend/#3C3C3C/#EEEEEE/.3" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-((Bmin-2)`max`(height-Bpad-2))-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#EEEEEE/.3" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+	<!-- top-right -->
+	<tint color="blend/#3C3C3C/#EEEEEE/.3" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2-2+(Oh-5)" y="height-((Bmin-2)`max`(height-Bpad-2))-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#EEEEEE/.3" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+	<!-- bottom-left -->
+	<tint color="blend/#3C3C3C/#EEEEEE/.3" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#EEEEEE/.3" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y="height-2-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+	<!-- bottom-right -->
+	<tint color="blend/#3C3C3C/#EEEEEE/.3" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2-2+(Oh-5)" y="height-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#EEEEEE/.3" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-2-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+
+	<!-- icon -->
+	<line color="blend/#3C3C3C/#EEEEEE/.3" width="2"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#EEEEEE/.3" width="1"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y2="height-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#EEEEEE/.3" width="2"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#EEEEEE/.3" width="1"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y2="height-((Bmin-2)`max`(height-Bpad-2))-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+</draw_ops>
+
+<draw_ops name="close_icon_f">
+<!-- outside border -->
+
+	<!-- main cross -->
+	<line color="blend/#3C3C3C/#EEEEEE/.5" width="4"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#EEEEEE/.5" width="4"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<!-- top-left -->
+	<tint color="blend/#3C3C3C/#EEEEEE/.5" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-((Bmin-2)`max`(height-Bpad-2))-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#EEEEEE/.5" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+	<!-- top-right -->
+	<tint color="blend/#3C3C3C/#EEEEEE/.5" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2-2+(Oh-5)" y="height-((Bmin-2)`max`(height-Bpad-2))-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#EEEEEE/.5" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+	<!-- bottom-left -->
+	<tint color="blend/#3C3C3C/#EEEEEE/.5" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#EEEEEE/.5" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y="height-2-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+	<!-- bottom-right -->
+	<tint color="blend/#3C3C3C/#EEEEEE/.5" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2-2+(Oh-5)" y="height-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#EEEEEE/.5" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-2-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+
+	<!-- icon -->
+	<line color="blend/#3C3C3C/#EEEEEE/.5" width="2"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#EEEEEE/.5" width="1"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y2="height-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#EEEEEE/.5" width="2"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#EEEEEE/.5" width="1"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y2="height-((Bmin-2)`max`(height-Bpad-2))-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+</draw_ops>
+
+<draw_ops name="close_icon_p">
+	<!-- outside border -->
+
+	<!-- main cross -->
+	<line color="blend/#3C3C3C/#545454/.5" width="4"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#545454/.5" width="4"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<!-- top-left -->
+	<tint color="blend/#3C3C3C/#545454/.5" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-((Bmin-2)`max`(height-Bpad-2))-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#545454/.5" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+	<!-- top-right -->
+	<tint color="blend/#3C3C3C/#545454/.5" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2-2+(Oh-5)" y="height-((Bmin-2)`max`(height-Bpad-2))-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#545454/.5" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+	<!-- bottom-left -->
+	<tint color="blend/#3C3C3C/#545454/.5" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#545454/.5" alpha="1.0"
+		x="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y="height-2-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+	<!-- bottom-right -->
+	<tint color="blend/#3C3C3C/#545454/.5" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2-2+(Oh-5)" y="height-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="1"/>
+	<tint color="blend/#3C3C3C/#545454/.5" alpha="1.0"
+		x="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y="height-2-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="1" height="2"/>
+
+	<!-- icon -->
+	<line color="blend/#3C3C3C/#D90000/.7" width="2"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#D90000/.7" width="1"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y2="height-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#D90000/.7" width="2"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)-1" y2="height-((Bmin-2)`max`(height-Bpad-2))-1-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+	<line color="blend/#3C3C3C/#D90000/.7" width="1"
+		x1="(width+1-(Ch-1)-((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y1="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		x2="(width+1-(Ch-1)+((Bmin-2)`max`(height-Bpad-2)))/2+(Oh-5)" y2="height-((Bmin-2)`max`(height-Bpad-2))-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"/>
+</draw_ops>
+
+<!-- **maximize icon** -->
+
+<draw_ops name="maximize_icon_n">
+	<tint color="#EEEEEE" alpha=".3"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad))*7/5)/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))*7/5" height="3"/>
+	<tint color="#EEEEEE" alpha=".3"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad))*7/5)/2+(Oh-5)" y="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))*7/5" height="2"/>
+	<tint color="#EEEEEE" alpha=".3"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad))*7/5)/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))-5"/>
+	<tint color="#EEEEEE" alpha=".3"
+		x="(width+1-(Ch-1)+(Bmin`max`(height-Bpad))*7/5)/2-2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))-5"/>
+</draw_ops>
+
+<draw_ops name="maximize_icon_f">
+	<tint color="#EEEEEE" alpha=".5"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad))*7/5)/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))*7/5" height="3"/>
+	<tint color="#EEEEEE" alpha=".5"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad))*7/5)/2+(Oh-5)" y="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))*7/5" height="2"/>
+	<tint color="#EEEEEE" alpha=".5"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad))*7/5)/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))-5"/>
+	<tint color="#EEEEEE" alpha=".5"
+		x="(width+1-(Ch-1)+(Bmin`max`(height-Bpad))*7/5)/2-2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))-5"/>
+</draw_ops>
+
+<draw_ops name="maximize_icon_p">
+	<tint color="shade/gtk:bg[SELECTED]/.87" alpha="1"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad))*7/5)/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))*7/5" height="3"/>
+	<tint color="shade/gtk:bg[SELECTED]/.87" alpha="1"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad))*7/5)/2+(Oh-5)" y="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))*7/5" height="2"/>
+	<tint color="shade/gtk:bg[SELECTED]/.87" alpha="1"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad))*7/5)/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))-5"/>
+	<tint color="shade/gtk:bg[SELECTED]/.87" alpha="1"
+		x="(width+1-(Ch-1)+(Bmin`max`(height-Bpad))*7/5)/2-2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))-5"/>
+</draw_ops>
+
+<!-- **restore icon** -->
+<draw_ops name="restore_icon_n">
+	<tint color="#EEEEEE" alpha=".3"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))*5/6-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))" height="3"/>
+	<tint color="#EEEEEE" alpha=".3"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))" height="2"/>
+	<tint color="#EEEEEE" alpha=".3"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))*5/6+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))*5/6-5"/>
+	<tint color="#EEEEEE" alpha=".3"
+		x="(width+1-(Ch-1)+(Bmin`max`(height-Bpad)))/2-2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))*5/6+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))*5/6-5"/>
+</draw_ops>
+
+<draw_ops name="restore_icon_f">
+	<tint color="#EEEEEE" alpha=".5"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))*5/6-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))" height="3"/>
+	<tint color="#EEEEEE" alpha=".5"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))" height="2"/>
+	<tint color="#EEEEEE" alpha=".5"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))*5/6+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))*5/6-5"/>
+	<tint color="#EEEEEE" alpha=".5"
+		x="(width+1-(Ch-1)+(Bmin`max`(height-Bpad)))/2-2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))*5/6+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))*5/6-5"/>
+</draw_ops>
+<draw_ops name="restore_icon_p">
+	<tint color="shade/gtk:bg[SELECTED]/.87" alpha="1"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))*5/6-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))" height="3"/>
+	<tint color="shade/gtk:bg[SELECTED]/.87" alpha="1"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-2-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))" height="2"/>
+	<tint color="shade/gtk:bg[SELECTED]/.87" alpha="1"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))*5/6+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))*5/6-5"/>
+	<tint color="shade/gtk:bg[SELECTED]/.87" alpha="1"
+		x="(width+1-(Ch-1)+(Bmin`max`(height-Bpad)))/2-2+(Oh-5)" y="height-(Bmin`max`(height-Bpad))*5/6+3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="2" height="(Bmin`max`(height-Bpad))*5/6-5"/>
+</draw_ops>
+
+<!-- **minimize icon** -->
+
+<draw_ops name="minimize_icon_n">
+	<tint color="#EEEEEE" alpha=".3"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))" height="3"/>
+</draw_ops>
+
+<draw_ops name="minimize_icon_f">
+	<tint color="#EEEEEE" alpha=".5"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))" height="3"/>
+</draw_ops>
+
+<draw_ops name="minimize_icon_p">
+	<tint color="shade/gtk:bg[SELECTED]/.87" alpha="1"
+		x="(width+1-(Ch-1)-(Bmin`max`(height-Bpad)))/2+(Oh-5)" y="height-3-((height-Bmin)`min`Bpad)/2+(Ov-5)"
+		width="(Bmin`max`(height-Bpad))" height="3"/>
+</draw_ops>
+
+<draw_ops name="blank">
+<!-- nothing -->
+</draw_ops>
+
+<!-- ::: FRAME STYLES ::: -->
+
+<frame_style name="normal" geometry="normal">
+	<piece position="entire_background" draw_ops="bevel_n"/>
+	<piece position="title" draw_ops="title_n"/>
+ 	<piece position="overlay" draw_ops="edge_n"/>
+	<button function="menu" state="normal" draw_ops="menu_icon_n"/>
+	<button function="minimize" state="normal" draw_ops="minimize_icon_n"/>
+	<button function="maximize" state="normal" draw_ops="maximize_icon_n"/>
+	<button function="close" state="normal" draw_ops="close_icon_n"/>
+
+	<button function="menu" state="pressed" draw_ops="menu_icon_p"/>
+	<button function="menu" state="prelight" draw_ops="menu_icon_p"/>
+	<button function="minimize" state="pressed" draw_ops="minimize_icon_p"/>
+	<button function="minimize" state="prelight" draw_ops="minimize_icon_p"/>
+	<button function="maximize" state="pressed" draw_ops="maximize_icon_p"/>
+	<button function="maximize" state="prelight" draw_ops="maximize_icon_p"/>
+	<button function="close" state="pressed" draw_ops="close_icon_p"/>
+	<button function="close" state="prelight" draw_ops="close_icon_p"/>
+</frame_style>
+
+<frame_style name="focused" geometry="normal" parent="normal">
+	<piece position="entire_background" draw_ops="bevel_f"/>
+	<piece position="title" draw_ops="title_f"/>
+ 	<piece position="overlay" draw_ops="edge_f"/>
+	<button function="menu" state="normal" draw_ops="menu_icon_f"/>
+	<button function="minimize" state="normal" draw_ops="minimize_icon_f"/>
+	<button function="maximize" state="normal" draw_ops="maximize_icon_f"/>
+	<button function="close" state="normal" draw_ops="close_icon_f"/>
+	<button function="menu" state="pressed" draw_ops="menu_icon_p"/>
+	<button function="maximize" state="pressed" draw_ops="maximize_icon_p"/>
+	<button function="minimize" state="pressed" draw_ops="minimize_icon_p"/>
+	<button function="close" state="pressed" draw_ops="close_icon_p"/>
+	<button function="menu" state="prelight" draw_ops="menu_icon_p"/>
+	<button function="maximize" state="prelight" draw_ops="maximize_icon_p"/>
+	<button function="minimize" state="prelight" draw_ops="minimize_icon_p"/>
+	<button function="close" state="prelight" draw_ops="close_icon_p"/>
+</frame_style>
+
+<frame_style name="normal_max" geometry="normal_max" parent="normal">
+	<piece position="entire_background" draw_ops="bevel_max_n"/>
+ 	<piece position="overlay" draw_ops="blank"/>
+	<button function="maximize" state="normal" draw_ops="restore_icon_n"/>
+	<button function="maximize" state="pressed" draw_ops="restore_icon_p"/>
+	<button function="maximize" state="prelight" draw_ops="restore_icon_p"/>
+</frame_style>
+
+<frame_style name="focused_max" geometry="normal_max" parent="focused">
+	<piece position="entire_background" draw_ops="bevel_max_f"/>
+ 	<piece position="overlay" draw_ops="blank"/>
+	<button function="maximize" state="normal" draw_ops="restore_icon_f"/>
+	<button function="maximize" state="pressed" draw_ops="restore_icon_p"/>
+	<button function="maximize" state="prelight" draw_ops="restore_icon_p"/>
+</frame_style>
+
+<frame_style name="border_n" geometry="border" parent="normal">
+	<piece position="entire_background" draw_ops="rectangle_border_n"/>
+	<piece position="title" draw_ops="blank"/>
+</frame_style>
+
+<frame_style name="border_f" geometry="border" parent="normal">
+	<piece position="entire_background" draw_ops="rectangle_border_f"/>
+</frame_style>
+
+<frame_style name="utility_n" geometry="utility" parent="normal">
+	<piece position="entire_background" draw_ops="bevel_utility_n"/>
+ 	<piece position="overlay" draw_ops="blank"/>
+</frame_style>
+
+<frame_style name="utility_f" geometry="utility" parent="focused">
+	<piece position="entire_background" draw_ops="bevel_utility_f"/>
+ 	<piece position="overlay" draw_ops="blank"/>
+</frame_style>
+
+<frame_style_set name="normal">
+	<frame focus="yes" state="normal" resize="both" style="focused"/>
+	<frame focus="no" state="normal" resize="both" style="normal"/>
+	<frame focus="yes" state="maximized" style="focused_max"/>
+	<frame focus="no" state="maximized" style="normal_max"/>
+	<frame focus="yes" state="shaded" style="focused"/>
+	<frame focus="no" state="shaded" style="normal"/>
+	<frame focus="yes" state="maximized_and_shaded" style="focused_max"/>
+	<frame focus="no" state="maximized_and_shaded" style="normal_max"/>
+</frame_style_set>
+
+<frame_style_set name="utility">
+	<frame focus="yes" state="normal" resize="both" style="utility_f"/>
+	<frame focus="no" state="normal" resize="both" style="utility_n"/>
+	<!-- this is a bunch of crack since utility windows shouldn't be maximized -->
+	<frame focus="yes" state="maximized" style="focused"/>
+	<frame focus="no" state="maximized" style="normal"/>
+	<frame focus="yes" state="shaded" style="utility_f"/>
+	<frame focus="no" state="shaded" style="utility_n"/>
+	<frame focus="yes" state="maximized_and_shaded" style="focused"/>
+	<frame focus="no" state="maximized_and_shaded" style="normal"/>
+</frame_style_set>
+
+<frame_style_set name="border">
+	<frame focus="yes" state="normal" resize="both" style="border_f"/>
+	<frame focus="no" state="normal" resize="both" style="border_n"/>
+	<frame focus="yes" state="maximized" style="border_f"/>
+	<frame focus="no" state="maximized" style="border_n"/>
+	<frame focus="yes" state="shaded" style="border_f"/>
+	<frame focus="no" state="shaded" style="border_n"/>
+	<frame focus="yes" state="maximized_and_shaded" style="border_f"/>
+	<frame focus="no" state="maximized_and_shaded" style="border_n"/>
+</frame_style_set>
+
+<window type="normal" style_set="normal"/>
+<window type="dialog" style_set="normal"/>
+<window type="modal_dialog" style_set="normal"/>
+<window type="menu" style_set="utility"/>
+<window type="utility" style_set="utility"/>
+<window type="border" style_set="border"/>
+
+<menu_icon function="close" state="normal" draw_ops="close_icon_n"/>
+<menu_icon function="maximize" state="normal" draw_ops="maximize_icon_n"/>
+<menu_icon function="unmaximize" state="normal" draw_ops="restore_icon_n"/>
+<menu_icon function="minimize" state="normal" draw_ops="minimize_icon_n"/>
+
+</metacity_theme>

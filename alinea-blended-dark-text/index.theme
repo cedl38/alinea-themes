@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=NaturAlinea
+Type=X-GNOME-Metatheme
+Comment=
+
+[X-GNOME-Metatheme]
+GtkTheme=SableVert
+MetacityTheme=NaturAlinea
+IconTheme=Foxtrot
+GtkColorScheme=base_color:#ffffff,fg_color:#000000,tooltip_fg_color:#000000,selected_bg_color:#FADB7D,selected_fg_color:#000000,text_color:#000000,bg_color:#EBE9C7,tooltip_bg_color:#FFFFBF
+CursorTheme=default
+CursorSize=18
+NotificationTheme=slider

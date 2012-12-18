@@ -2,14 +2,13 @@
 
 # links
 
+# package.name
+pkgname=${PWD##*/}
+name=${pkgname%%-*}
+
 # directory
 theme_dir="$HOME/.themes"
+path=$(ls -1 | grep "$name")
 
 # link files to directory
-while read path
-do
-	if [ "$path" != "readme" ]
-	then
-	ln -s -r -v $path $theme_dir
-	fi
-done < pkglist
+ln -s -r -v $path $theme_dir

@@ -5,33 +5,28 @@
 #sed 's/' '/\\n/' $alinearc
 
 # make xfwm4 themes
-cd alinea/xfwm4
+dir=$PWD
+cd $dir/alinea/xfwm4
 ./generator.py
-cd ../../alinea-blended/xfwm4
+cd $dir/alinea-blended/xfwm4
 ./generator.py
-cd ../../alinea-mini/xfwm4
+cd $dir/alinea-mini/xfwm4
 ./generator.py
 
 replace() {
-sed 's/#active_text_color/active_text_color/' $1/xfwm4/themerc > /tmp/themerc.tmp && mv -f /tmp/themerc.tmp $1/xfwm4/themerc
+sed "s/#$1/$1/" themerc > /tmp/themerc.tmp && mv -f /tmp/themerc.tmp themerc
 }
 
-# make alinea-dark-text variant
-mkdir alinea-dark-text
-cp -r -u -v alinea/* alinea-dark-text
-replace 'alinea-dark-text'
+# build variants
+source='alinea alinea-mini alinea-blended'
 
-# make alinea-mini-dark-text variant
-mkdir alinea-mini-dark-text
-cp -r -u -v alinea-mini/* alinea-mini-dark-text
-replace 'alinea-mini-dark-text'
-
-# make alinea-blended-dark-text variant
-mkdir alinea-blended-dark-text
-cp -r -u -v alinea-blended/* alinea-blended-dark-text
-replace 'alinea-blended-dark-text'
-
-#file.tmp && mv -f file.tmp '$file'
-
-# create links
-#./link.sh
+set $source
+until [ $# == 0 ]
+do
+cd $dir
+mkdir -p $1-dark-text/xfwm4
+cd $dir/$1-dark-text/xfwm4
+cp -r -u -v $dir/$1/xfwm4/* ./
+replace 'active_text_color'
+shift
+done

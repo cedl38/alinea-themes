@@ -1,9 +1,9 @@
-alinea-themes version 2.2
+alinea-themes version 2.2.1
 -------------------------
 
 Author : Cédric Leporcq
 Released under the GPL license
-Date : February 28, 2013
+Date : March 01, 2013
 Sources : https://github.com/cedl38/alinea-themes
 
 Simple themes ported to xfwm4 from "natural-adaptive" serie. The metacity version is also included. Theses themes use GTK themes colors to be adaptable on them.
@@ -22,6 +22,7 @@ Arch users : "alinea-themes" is available in AUR.
 
 LOG
 
+2.2.1 : Adjust buttons placement.
 2.2
  - Alinea-mini : slightly increase titlebar height of 1px to fix top sensitive border.
  

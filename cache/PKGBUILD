@@ -1,7 +1,7 @@
 # Maintainer: Ced <cedl38@gmail.com>
 
 pkgname=alinea-themes
-pkgver=2.2
+pkgver=2.2.1
 pkgrel=1
 pkgdesc="Simple xfwm4 and metacity-1 theme. Theses themes use GTK themes colors to be adaptable on them."
 arch=('any')
@@ -10,7 +10,7 @@ license=('GPL3')
 depends=('xfwm4>=4.8')
 optdepends=('xfce4-notifyd>=0.2')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/cedl38/$pkgname/archive/v$pkgver.tar.gz")
-sha256sums=('ec525c05c5b736a5c0fd079be43c10db72b5ebfc7287f151ae6d263c0eb3a0e8')
+sha256sums=('e55229b65e2bd816eae5c2a872d1483f7f12994cb59432608378a0e0faf666da')
 
 build() {
   cd $srcdir/$pkgname'-'$pkgver
